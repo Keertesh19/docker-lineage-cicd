@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="pegitlab" fetch="https://gitlab.pixelexperience.org/" />
+  <project name="Keertesh19/device_oneplus_avicii" path="device/oneplus/avicii" remote="github" revision="lineage-19.1" />
+  <project name="Keertesh19/device_oneplus_sm7250-common" path="device/oneplus/sm7250-common" remote="github" revision="lineage-19.1" />
+  <project name="ArrowOS-Devices/android_hardware_oneplus" path="hardware/oneplus" remote="github" revision="arrow-12.1"/>
+  <project name="ArrowOS-Devices/android_kernel_oneplus_sm7250" path="kernel/oneplus/avicii" remote="github" revision="arrow-12.1" />
+  <project name="Keertesh19/vendor_oneplus_sm7250-common" path="vendor/oneplus/sm7250-common" remote="github" revision="lineage-19.1" />
+  <project name="Keertesh19/vendor_oneplus_avicii" path="vendor/oneplus/avicii" remote="github" revision="lineage-19.1" />
+  <project name="android/vendor-blobs/vendor_oneplus-firmware" path="vendor/oneplus/firmware" remote="pegitlab" revision="eleven" />
+</manifest>

@@ -19,13 +19,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request' && !startsWith(github.ref, 'refs/pull')
-        uses: docker/login-action@dd4fa0671be5250ee6f50aedf4cb05514abda2c7
+        if: github.event_name != 'pull_request' && !startsWith(github.ref, 'refs/pull') && github.actor != 'dependabot[bot]'
+        uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -35,7 +35,7 @@ jobs:
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
-        uses: docker/metadata-action@f2a13332ac1ce8c0a71aeac48a150dbb1838ab67
+        uses: docker/metadata-action@69f6fc9d46f2f8bf0d5491e4aabe0bb8c6a4678a
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: latest=${{ github.ref == 'refs/heads/master' }}
@@ -43,9 +43,9 @@ jobs:
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
-        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
+        uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' && !startsWith(github.ref, 'refs/pull') }}
+          push: ${{ github.event_name != 'pull_request' && !startsWith(github.ref, 'refs/pull')  && github.actor != 'dependabot[bot]' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

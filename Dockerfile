@@ -1,4 +1,4 @@
-FROM ubuntu:20.04@sha256:9101220a875cee98b016668342c489ff0674f247f6ca20dfc91b91c0f28581ae
+FROM ubuntu:22.04@sha256:26c68657ccce2cb0a31b330cb0be2b5e108d467f641c62e13ab40cbec258c68d
 LABEL maintainer="Nicola Corna <nicola@corna.info>"
 
 # Environment variables
@@ -146,8 +146,8 @@ RUN apt-get -qq update && \
       cron curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick \
       kmod lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool \
       libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 \
-      libxml2-utils lsof lzop maven openjdk-8-jdk pngcrush procps \
-      python rsync schedtool squashfs-tools wget xdelta3 xsltproc yasm zip \
+      libxml2-utils lsof lzop maven openjdk-8-jdk pngcrush procps python3 \
+      python-is-python3 rsync schedtool squashfs-tools wget xdelta3 xsltproc yasm zip \
       zlib1g-dev \
       && rm -rf /var/lib/apt/lists/*
 

@@ -1,4 +1,4 @@
-FROM ubuntu:22.04@sha256:20fa2d7bb4de7723f542be5923b06c4d704370f0390e4ae9e1c833c8785644c1
+FROM ubuntu:22.04@sha256:27cb6e6ccef575a4698b66f5de06c7ecd61589132d5a91d098f7f3f9285415a9
 LABEL maintainer="Nicola Corna <nicola@corna.info>"
 
 # Environment variables
@@ -143,7 +143,7 @@ RUN mkdir -p $MIRROR_DIR $SRC_DIR $TMP_DIR $CCACHE_DIR $ZIP_DIR $LMANIFEST_DIR \
 ############################
 RUN apt-get -qq update && \
       apt-get install -y bc bison bsdmainutils build-essential ccache cgpt clang \
-      cron curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick \
+      cron curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick \
       kmod lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool \
       libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 \
       libxml2-utils lsof lzop maven openjdk-8-jdk pngcrush procps python3 \

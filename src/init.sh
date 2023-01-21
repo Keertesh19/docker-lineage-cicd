@@ -37,7 +37,7 @@ git config --global user.email "$USER_MAIL"
 if [ "$SIGN_BUILDS" = true ]; then
   if [ -z "$(ls -A "$KEYS_DIR")" ]; then
     echo ">> [$(date)] SIGN_BUILDS = true but empty \$KEYS_DIR, generating new keys"
-    for c in releasekey platform shared media networkstack; do
+    for c in releasekey platform shared media networkstack sdk_sandbox bluetooth; do
       echo ">> [$(date)]  Generating $c..."
       /root/make_key "$KEYS_DIR/$c" "$KEYS_SUBJECT" <<< '' &> /dev/null
     done
@@ -49,6 +49,14 @@ if [ "$SIGN_BUILDS" = true ]; then
           exit 1
         fi
       done
+    done
+    
+    # those keys are only required starting with android-20, so people who have built earlier might not yet have them
+    for c in sdk_sandbox bluetooth; do
+      if [ ! -f "$KEYS_DIR/$c.pk8" ]; then
+        echo ">> [$(date)]  Generating $c..."
+        /root/make_key "$KEYS_DIR/$c" "$KEYS_SUBJECT" <<< '' &> /dev/null
+      fi
     done
   fi
 
